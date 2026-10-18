@@ -3,567 +3,233 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CV cá nhân - [Tên của bạn]">
-  <title>CV - [Tên của bạn]</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --text: #1f2937;
-      --text-light: #6b7280;
-      --bg: #ffffff;
-      --bg-alt: #f9fafb;
-      --border: #e5e7eb;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-      --radius: 8px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --primary: #3b82f6;
-        --primary-dark: #2563eb;
-        --text: #f3f4f6;
-        --text-light: #9ca3af;
-        --bg: #111827;
-        --bg-alt: #1f2937;
-        --border: #374151;
-      }
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
-      padding: 2rem;
-    }
-
-    .cv-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--bg);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    .header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .header .title {
-      font-size: 1.25rem;
-      opacity: 0.9;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .contact-item a {
-      color: white;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .contact-item a:hover {
-      opacity: 0.8;
-    }
-
-    .section {
-      padding: 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section:last-child {
-      border-bottom: none;
-    }
-
-    .section-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .section-title::before {
-      content: "";
-      width: 4px;
-      height: 1.25rem;
-      background: var(--primary);
-      border-radius: 2px;
-    }
-
-    /* Profile */
-    .profile p {
-      color: var(--text-light);
-      font-size: 1rem;
-    }
-
-    /* Experience */
-    .experience-item {
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-      border-left: 2px solid var(--border);
-    }
-
-    .experience-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .exp-header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .exp-role {
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .exp-company {
-      color: var(--primary);
-      font-weight: 500;
-    }
-
-    .exp-date {
-      color: var(--text-light);
-      font-size: 0.9rem;
-      white-space: nowrap;
-    }
-
-    .exp-description {
-      color: var(--text-light);
-      font-size: 0.95rem;
-    }
-
-    .exp-tasks {
-      margin-top: 0.75rem;
-      padding-left: 1.25rem;
-    }
-
-    .exp-tasks li {
-      margin-bottom: 0.4rem;
-      color: var(--text-light);
-      font-size: 0.95rem;
-    }
-
-    /* Education */
-    .edu-item {
-      margin-bottom: 1.25rem;
-    }
-
-    .edu-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .edu-degree {
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-
-    .edu-school {
-      color: var(--primary);
-      font-weight: 500;
-      margin-top: 0.25rem;
-    }
-
-    .edu-date {
-      color: var(--text-light);
-      font-size: 0.9rem;
-    }
-
-    /* Skills */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-    }
-
-    .skill-category {
-      background: var(--bg-alt);
-      padding: 1.25rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-    }
-
-    .skill-category h4 {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .skill-tag {
-      background: var(--primary);
-      color: white;
-      padding: 0.35rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
-    /* Projects */
-    .project-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .project-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .project-name {
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-
-    .project-desc {
-      color: var(--text-light);
-      font-size: 0.95rem;
-      margin-top: 0.25rem;
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.5rem;
-    }
-
-    .tech-tag {
-      background: var(--bg-alt);
-      color: var(--text-light);
-      padding: 0.25rem 0.6rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      border: 1px solid var(--border);
-    }
-
-    .project-links {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .project-links a {
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .project-links a:hover {
-      text-decoration: underline;
-    }
-
-    /* Languages */
-    .lang-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .lang-item:last-child {
-      border-bottom: none;
-    }
-
-    .lang-name {
-      font-weight: 500;
-    }
-
-    .lang-level {
-      color: var(--text-light);
-      font-size: 0.9rem;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: var(--text-light);
-      font-size: 0.85rem;
-      background: var(--bg-alt);
-    }
-
-    @media print {
-      body {
-        padding: 0;
-        background: white;
-      }
-      .cv-container {
-        box-shadow: none;
-        border: none;
-      }
-      .header {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 1rem;
-      }
-      .header h1 {
-        font-size: 2rem;
-      }
-      .contact-info {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-      .section {
-        padding: 1.5rem 1rem;
-      }
-    }
-  </style>
+  <meta name="description" content="CV cá nhân - [Họ và Tên] - [Chức danh/Vị trí mong muốn]">
+  <meta name="theme-color" content="#2563eb">
+  <title>CV - [Họ và Tên]</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
-  <div class="cv-container">
-    <!-- Header -->
-    <header class="header">
-      <h1>[Họ và Tên]</h1>
-      <p class="title">[Chức danh / Vị trí mong muốn]</p>
-      <div class="contact-info">
-        <div class="contact-item">
-          <span>📧</span>
-          <a href="mailto:[email@domain.com]">[email@domain.com]</a>
+  <a href="#main" class="skip-link">Chuyển đến nội dung chính</a>
+
+  <header class="site-header" role="banner">
+    <nav class="nav container" aria-label="Điều hướng chính">
+      <a href="#" class="nav-logo" aria-label="Về trang chủ">[Họ và Tên]</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Mở menu">
+        <span class="hamburger"></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu" role="menubar">
+        <li role="none"><a href="#profile" class="nav-link" role="menuitem">Giới thiệu</a></li>
+        <li role="none"><a href="#objective" class="nav-link" role="menuitem">Mục tiêu</a></li>
+        <li role="none"><a href="#experience" class="nav-link" role="menuitem">Kinh nghiệm</a></li>
+        <li role="none"><a href="#education" class="nav-link" role="menuitem">Giáo dục</a></li>
+        <li role="none"><a href="#projects" class="nav-link" role="menuitem">Dự án</a></li>
+        <li role="none"><a href="#skills" class="nav-link" role="menuitem">Kỹ năng</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="main-layout container" role="main">
+    <aside class="sidebar" aria-label="Thông tin cá nhân">
+      <div class="sidebar-card profile-card reveal">
+        <div class="avatar-wrapper">
+          <img src="assets/avatar.svg" alt="" class="avatar" id="avatar">
+          <div class="avatar-fallback" id="avatar-fallback" aria-hidden="true">[Họ Tên]</div>
         </div>
-        <div class="contact-item">
-          <span>📱</span>
-          <a href="tel:[+84xxxxxxxxx]">[+84 xxx xxx xxx]</a>
-        </div>
-        <div class="contact-item">
-          <span>📍</span>
-          <span>[Thành phố, Quốc gia]</span>
-        </div>
-        <div class="contact-item">
-          <span>🔗</span>
-          <a href="[linkedin-url]" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-        <div class="contact-item">
-          <span>💻</span>
-          <a href="[github-url]" target="_blank" rel="noopener">GitHub</a>
-        </div>
-        <div class="contact-item">
-          <span>🌐</span>
-          <a href="[portfolio-url]" target="_blank" rel="noopener">Portfolio</a>
+        <div class="profile-info">
+          <h1 class="profile-name">[Họ và Tên]</h1>
+          <p class="profile-title">[Chức danh / Vị trí mong muốn]</p>
+          <p class="profile-location">📍 [Thành phố, Quốc gia]</p>
         </div>
       </div>
-    </header>
 
-    <!-- Profile -->
-    <section class="section">
-      <h2 class="section-title">Giới thiệu</h2>
-      <div class="profile">
-        <p>[Viết 2-3 câu tóm tắt về bản thân: kinh nghiệm năm, chuyên môn chính, đam mê, mục tiêu nghề nghiệp...]</p>
+      <div class="sidebar-card contact-card reveal">
+        <h2 class="sidebar-title">Liên hệ</h2>
+        <ul class="contact-list">
+          <li>
+            <a href="mailto:[email@domain.com]" class="contact-link">
+              <svg class="icon" aria-hidden="true"><use href="#icon-email"></use></svg>
+              <span>[email@domain.com]</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:[+84xxxxxxxxx]" class="contact-link">
+              <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
+              <span>[+84 xxx xxx xxx]</span>
+            </a>
+          </li>
+          <li>
+            <a href="[linkedin-url]" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <svg class="icon" aria-hidden="true"><use href="#icon-linkedin"></use></svg>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="[github-url]" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="[portfolio-url]" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <svg class="icon" aria-hidden="true"><use href="#icon-globe"></use></svg>
+              <span>Portfolio</span>
+            </a>
+          </li>
+        </ul>
       </div>
-    </section>
 
-    <!-- Experience -->
-    <section class="section">
-      <h2 class="section-title">Kinh nghiệm làm việc</h2>
-      <div class="experience">
-        <!-- Job 1 -->
-        <div class="experience-item">
-          <div class="exp-header">
-            <div>
-              <div class="exp-role">[Vị trí công việc]</div>
-              <div class="exp-company">[Tên công ty]</div>
-            </div>
-            <span class="exp-date">[Tháng/Năm - Tháng/Năm]</span>
+      <div class="sidebar-card skills-card reveal">
+        <h2 class="sidebar-title">Kỹ năng chính</h2>
+        <div class="skills-bars" id="skills-bars">
+          <!-- Skills injected by JS -->
+        </div>
+      </div>
+
+      <div class="sidebar-card languages-card reveal">
+        <h2 class="sidebar-title">Ngoại ngữ</h2>
+        <ul class="languages-list" id="languages-list">
+          <!-- Languages injected by JS -->
+        </ul>
+      </div>
+
+      <div class="sidebar-card interests-card reveal">
+        <h2 class="sidebar-title">Sở thích</h2>
+        <ul class="interests-list" id="interests-list">
+          <!-- Interests injected by JS -->
+        </ul>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <section id="profile" class="section reveal" aria-labelledby="profile-heading">
+        <h2 id="profile-heading" class="section-title">Giới thiệu</h2>
+        <div class="section-content">
+          <p class="profile-text">[Viết 3-5 câu tóm tắt về bản thân: số năm kinh nghiệm, chuyên môn chính, đam mê công nghệ, giá trị cốt lõi, mục tiêu nghề nghiệp ngắn/hạn dài...]</p>
+        </div>
+      </section>
+
+      <section id="objective" class="section reveal" aria-labelledby="objective-heading">
+        <h2 id="objective-heading" class="section-title">Mục tiêu nghề nghiệp</h2>
+        <div class="section-content">
+          <div class="objective-card">
+            <p class="objective-text">[Mô tả mục tiêu nghề nghiệp: vị trí mong muốn, môi trường làm việc lý tưởng, hướng phát triển kỹ năng, đóng góp mong muốn cho tổ chức...]</p>
           </div>
-          <p class="exp-description">[Mô tả ngắn về công ty/nhóm dự án]</p>
-          <ul class="exp-tasks">
-            <li>[Thành tựu / Trách nhiệm chính 1]</li>
-            <li>[Thành tựu / Trách nhiệm chính 2]</li>
-            <li>[Thành tựu / Trách nhiệm chính 3]</li>
+        </div>
+      </section>
+
+      <section id="experience" class="section reveal" aria-labelledby="experience-heading">
+        <h2 id="experience-heading" class="section-title">Kinh nghiệm làm việc</h2>
+        <div class="section-content">
+          <ol class="timeline" id="experience-timeline">
+            <!-- Experience items injected by JS -->
+          </ol>
+        </div>
+      </section>
+
+      <section id="education" class="section reveal" aria-labelledby="education-heading">
+        <h2 id="education-heading" class="section-title">Giáo dục</h2>
+        <div class="section-content">
+          <ul class="education-list" id="education-list">
+            <!-- Education items injected by JS -->
           </ul>
         </div>
+      </section>
 
-        <!-- Job 2 -->
-        <div class="experience-item">
-          <div class="exp-header">
-            <div>
-              <div class="exp-role">[Vị trí công việc]</div>
-              <div class="exp-company">[Tên công ty]</div>
-            </div>
-            <span class="exp-date">[Tháng/Năm - Tháng/Năm]</span>
+      <section id="projects" class="section reveal" aria-labelledby="projects-heading">
+        <h2 id="projects-heading" class="section-title">Dự án tiêu biểu</h2>
+        <div class="section-content">
+          <div class="projects-grid" id="projects-grid">
+            <!-- Project cards injected by JS -->
           </div>
-          <p class="exp-description">[Mô tả ngắn về công ty/nhóm dự án]</p>
-          <ul class="exp-tasks">
-            <li>[Thành tựu / Trách nhiệm chính 1]</li>
-            <li>[Thành tựu / Trách nhiệm chính 2]</li>
-            <li>[Thành tựu / Trách nhiệm chính 3]</li>
-          </ul>
         </div>
+      </section>
 
-        <!-- Thêm thêm experience-item tại đây -->
+      <section id="skills" class="section reveal" aria-labelledby="skills-detail-heading">
+        <h2 id="skills-detail-heading" class="section-title">Kỹ năng chi tiết</h2>
+        <div class="section-content">
+          <div class="skills-detail-grid" id="skills-detail-grid">
+            <!-- Detailed skills injected by JS -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-content">
+      <p class="footer-copyright">© <span id="current-year"></span> [Họ và Tên]. Được tạo với ❤️</p>
+      <div class="footer-actions">
+        <button id="download-pdf" class="btn btn-primary" aria-label="Tải CV dưới dạng PDF">
+          <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>
+          Tải CV (PDF)
+        </button>
+        <a href="mailto:[email@domain.com]" class="btn btn-outline">
+          <svg class="icon" aria-hidden="true"><use href="#icon-email"></use></svg>
+          Liên hệ
+        </a>
       </div>
-    </section>
+      <p class="footer-updated">Cập nhật lần cuối: <span id="last-updated">[Tháng/Năm]</span></p>
+    </div>
+  </footer>
 
-    <!-- Education -->
-    <section class="section">
-      <h2 class="section-title">Giáo dục</h2>
-      <div class="education">
-        <div class="edu-item">
-          <div class="edu-degree">[Tên bằng cấp / Chuyên ngành]</div>
-          <div class="edu-school">[Tên trường Đại học / Cao đẳng]</div>
-          <div class="edu-date">[Năm tốt nghiệp] | [Xếp loại / GPA nếu liên quan]</div>
-        </div>
+  <!-- SVG Sprite for Icons -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
+    <symbol id="icon-email" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="4" width="20" height="16" rx="2"/>
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect x="2" y="9" width="4" height="12"/>
+      <circle cx="4" cy="4" r="2"/>
+    </symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.91 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    </symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="2" y1="12" x2="22" y2="12"/>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </symbol>
+    <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <path d="M9 9h6v6H9z"/>
+    </symbol>
+    <symbol id="icon-graduation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+      <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+    </symbol>
+    <symbol id="icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+      <line x1="7" y1="7" x2="7.01" y2="7"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </symbol>
+  </svg>
 
-        <div class="edu-item">
-          <div class="edu-degree">[Tên bằng cấp / Chứng chỉ khác]</div>
-          <div class="edu-school">[Tên tổ chức đào tạo]</div>
-          <div class="edu-date">[Năm hoàn thành]</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section class="section">
-      <h2 class="section-title">Kỹ năng</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h4>Ngôn ngữ lập trình</h4>
-          <div class="skill-list">
-            <span class="skill-tag">[Ngôn ngữ 1]</span>
-            <span class="skill-tag">[Ngôn ngữ 2]</span>
-            <span class="skill-tag">[Ngôn ngữ 3]</span>
-            <span class="skill-tag">[Ngôn ngữ 4]</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h4>Framework & Thư viện</h4>
-          <div class="skill-list">
-            <span class="skill-tag">[Framework 1]</span>
-            <span class="skill-tag">[Framework 2]</span>
-            <span class="skill-tag">[Framework 3]</span>
-            <span class="skill-tag">[Framework 4]</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h4>Công cụ & Nền tảng</h4>
-          <div class="skill-list">
-            <span class="skill-tag">[Công cụ 1]</span>
-            <span class="skill-tag">[Công cụ 2]</span>
-            <span class="skill-tag">[Công cụ 3]</span>
-            <span class="skill-tag">[Công cụ 4]</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h4>Khác</h4>
-          <div class="skill-list">
-            <span class="skill-tag">[Kỹ năng mềm 1]</span>
-            <span class="skill-tag">[Kỹ năng mềm 2]</span>
-            <span class="skill-tag">[Kỹ năng chuyên môn 1]</span>
-            <span class="skill-tag">[Kỹ năng chuyên môn 2]</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section class="section">
-      <h2 class="section-title">Dự án tiêu biểu</h2>
-      <div class="projects">
-        <div class="project-item">
-          <div class="project-name">[Tên dự án 1]</div>
-          <p class="project-desc">[Mô tả ngắn 1-2 câu về dự án, vấn đề giải quyết, kết quả đạt được]</p>
-          <div class="project-tech">
-            <span class="tech-tag">[Tech 1]</span>
-            <span class="tech-tag">[Tech 2]</span>
-            <span class="tech-tag">[Tech 3]</span>
-          </div>
-          <div class="project-links">
-            <a href="[link-github/demo]" target="_blank" rel="noopener">Xem code</a>
-            <a href="[link-demo]" target="_blank" rel="noopener">Demo</a>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-name">[Tên dự án 2]</div>
-          <p class="project-desc">[Mô tả ngắn 1-2 câu về dự án, vấn đề giải quyết, kết quả đạt được]</p>
-          <div class="project-tech">
-            <span class="tech-tag">[Tech 1]</span>
-            <span class="tech-tag">[Tech 2]</span>
-            <span class="tech-tag">[Tech 3]</span>
-          </div>
-          <div class="project-links">
-            <a href="[link-github/demo]" target="_blank" rel="noopener">Xem code</a>
-            <a href="[link-demo]" target="_blank" rel="noopener">Demo</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Languages -->
-    <section class="section">
-      <h2 class="section-title">Ngoại ngữ</h2>
-      <div class="languages">
-        <div class="lang-item">
-          <span class="lang-name">Tiếng Việt</span>
-          <span class="lang-level">Ngôn ngữ mẹ đẻ</span>
-        </div>
-        <div class="lang-item">
-          <span class="lang-name">Tiếng Anh</span>
-          <span class="lang-level">[Trình độ: TOEIC/IELTS/TOEFL score hoặc mô tả]</span>
-        </div>
-        <div class="lang-item">
-          <span class="lang-name">[Ngôn ngữ khác]</span>
-          <span class="lang-level">[Trình độ]</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <p>Cập nhật lần cuối: [Tháng/Năm] | Được tạo với ❤️</p>
-    </footer>
-  </div>
+  <script src="script.js"></script>
 </body>
 </html>
